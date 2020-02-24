@@ -1,5 +1,5 @@
 #pragma once
-#include "square.cpp"
+#include "square.h"
 using namespace std;
 
 class board {
@@ -12,7 +12,7 @@ public:
 	const static int cols = 7;
 	square pieces[cols][rows];
 
-	bool addPiece(int column, string color);
+	bool addPiece(int column, state color);
 	void printBoard();
 	bool readfile(string);
 	bool writefile(string);

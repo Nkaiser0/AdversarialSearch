@@ -10,14 +10,14 @@ board::board(string s)
 	readfile(s);
 }
 
-bool board::addPiece(int column, string color)
+bool board::addPiece(int column, state color)
 {
 	//column is indexed at one for user convenience, so minus one for use in array
 	column--;
 
 	for (int i = 0; i < rows; i++) {
-		if (pieces[column][i].color == "") {
-			pieces[column][i].color = color;
+		if (pieces[column][i].color == EMPTY) {
+			pieces[column][i] = color;
 			return true;
 		}
 	}
