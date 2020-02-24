@@ -1,8 +1,5 @@
 #include "board.h"
-
-board::board()
-{
-}
+#include <iostream>
 
 bool board::addPiece(int column, string color)
 {
@@ -16,4 +13,16 @@ bool board::addPiece(int column, string color)
 		}
 	}
 	return false;
+}
+
+void board::printBoard()
+{
+	//prints from left to right, up to down
+	for (int i= rows-1; i>=0; i--) {
+		for (int j = 0; j < cols; j++) {
+			cout << pieces[j][i].color << "\t";
+		}
+		cout << endl;
+	}
+
 }
