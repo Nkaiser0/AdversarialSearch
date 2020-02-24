@@ -36,8 +36,14 @@ bool board::canMove(int col) {
 void board::printBoard()
 {
 	//prints from left to right, up to down
+	cout << "Last Move: ";
+	// TODO last move
+	if (getLastMove() == GREEN)
+		cout << " \033[32mgreen\033[0m";
+	else
+		cout << " \033[31mred\033[0m";
+	cout << "\n";
 	for (int i= rows-1; i>=0; i--) {
-		cout << "[";
 		for (int j = 0; j < cols; j++) {
 			cout << "|";
 			pieces[j][i].print();
@@ -45,6 +51,7 @@ void board::printBoard()
 		cout << "|\n";
 	}
 
+	cout << "Score: \033[31m" << getScore(RED) << "\033[0m - \033[32m" << getScore(GREEN) << "\033[0m\n";
 }
 
 bool board::readfile(string)
@@ -68,6 +75,22 @@ int board::getScore(state color) {
 		}
 	}
 	return score;
+}
+
+state board::getLastMove()
+{
+	int redCount(0), greenCount(0);
+	for (int i = 0; i < cols; i++) {
+		for (int j = 0; j < rows; j++) {
+			if (pieces[i][j].color == RED)
+				redCount++;
+			if (pieces[i][j].color == GREEN)
+				greenCount++;
+		}
+	}
+	if (redCount <= greenCount)
+		return GREEN;
+	return RED;
 }
 
 bool board::hasVerticalScore(int col, int row, state color) {

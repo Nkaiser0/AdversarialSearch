@@ -20,6 +20,7 @@ public:
 	bool canMove(int col);
 
 private:
+	state getLastMove();
 	bool hasVerticalScore(int col, int row, state color);
 	bool hasRightDiagonalScore(int col, int row, state color);
 	bool hasLeftDiagonalScore(int col, int row, state color);
