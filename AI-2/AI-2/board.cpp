@@ -4,7 +4,10 @@ board::board()
 {
 }
 
-board::board(string);
+board::board(string s)
+{
+	readfile(s);
+}
 
 bool board::addPiece(int column, string color)
 {

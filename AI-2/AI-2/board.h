@@ -12,5 +12,4 @@ public:
 	bool addPiece(int column, string color);
 	bool readfile(string);
 	bool writefile(string);
-
 };
