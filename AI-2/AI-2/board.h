@@ -17,6 +17,8 @@ public:
 	bool readfile(string);
 	bool writefile(string);
 	int getScore(state);
+	bool canMove(int col);
+
 private:
 	bool hasVerticalScore(int col, int row, state color);
 	bool hasRightDiagonalScore(int col, int row, state color);

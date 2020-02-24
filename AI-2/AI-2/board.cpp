@@ -28,6 +28,10 @@ bool board::addPiece(int column, state color)
 	return false;
 }
 
+bool board::canMove(int col) {
+	return pieces[col][rows - 1] == EMPTY;
+}
+
 
 void board::printBoard()
 {
