@@ -4,6 +4,8 @@ board::board()
 {
 }
 
+board::board(string);
+
 bool board::addPiece(int column, string color)
 {
 	//column is indexed at one for user convenience, so minus one for use in array
@@ -15,5 +17,15 @@ bool board::addPiece(int column, string color)
 			return true;
 		}
 	}
+	return false;
+}
+
+bool board::readfile(string)
+{
+	return false;
+}
+
+bool board::writefile(string)
+{
 	return false;
 }

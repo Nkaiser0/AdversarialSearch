@@ -8,6 +8,8 @@ public:
 	const static int cols = 7;
 	square pieces[cols][rows];
 	board();
+	board(string);
 	bool addPiece(int column);
-
+	bool readfile(string);
+	bool writefile(string);
 };
