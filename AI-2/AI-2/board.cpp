@@ -1,6 +1,15 @@
 #include "board.h"
 #include <iostream>
 
+board::board()
+{
+}
+
+board::board(string s)
+{
+	readfile(s);
+}
+
 bool board::addPiece(int column, string color)
 {
 	//column is indexed at one for user convenience, so minus one for use in array
@@ -15,6 +24,7 @@ bool board::addPiece(int column, string color)
 	return false;
 }
 
+
 void board::printBoard()
 {
 	//prints from left to right, up to down
@@ -26,3 +36,14 @@ void board::printBoard()
 	}
 
 }
+
+bool board::readfile(string)
+{
+	return false;
+}
+
+bool board::writefile(string)
+{
+	return false;
+}
+
