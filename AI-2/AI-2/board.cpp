@@ -17,7 +17,7 @@ bool board::addPiece(int column, state color)
 
 	for (int i = 0; i < rows; i++) {
 		if (pieces[column][i].color == EMPTY) {
-			pieces[column][i] = color;
+			pieces[column][i].color = color;
 			return true;
 		}
 	}
@@ -30,9 +30,10 @@ void board::printBoard()
 	//prints from left to right, up to down
 	for (int i= rows-1; i>=0; i--) {
 		for (int j = 0; j < cols; j++) {
-			cout << pieces[j][i].color << "\t";
+			cout << "|";
+			pieces[j][i].print();
 		}
-		cout << endl;
+		cout << "|\n";
 	}
 
 }
