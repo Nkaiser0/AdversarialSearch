@@ -1,6 +1,6 @@
 #include <iostream>
 #include "square.h"
-
+using namespace std;
 square::square()
 {
 	color = EMPTY;
@@ -16,14 +16,14 @@ void square::print()
 	switch (color)
 	{
 	case RED:
-		std::cout << "\033[31mR\033[0m"; //\033[31mR\033[0m
+		cout << "\033[31mR\033[0m"; //\033[31mR\033[0m
 		break;
 	case GREEN:
-		std::cout << "\033[32mG\033[0m"; //\033[32mG\033[0m
+		cout << "\033[32mG\033[0m"; //\033[32mG\033[0m
 		break;
 	case EMPTY:
 	default:
-		std::cout << " ";
+		cout << " ";
 	}
 }
 
