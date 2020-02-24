@@ -6,5 +6,5 @@ class square {
 
 
 public:
-	string color = "red";
+	string color = "";
 };

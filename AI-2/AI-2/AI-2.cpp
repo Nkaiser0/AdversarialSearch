@@ -10,4 +10,10 @@ int main()
 	board gameBoard = board();
 	gameBoard.printBoard();
 
+	gameBoard.addPiece(32, "");
+	gameBoard.printBoard();
+
+	gameBoard.addPiece(3, "red");
+	gameBoard.printBoard();
+
 }

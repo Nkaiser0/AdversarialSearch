@@ -16,4 +16,9 @@ public:
 	void printBoard();
 	bool readfile(string);
 	bool writefile(string);
+	int getScore(string);
+private:
+	bool hasVerticalScore(int col, int row, string color);
+	bool hasDiagonalScore(int col, int row, string color);
+	bool hasHorizontalScore(int col, int row, string color);
 };
