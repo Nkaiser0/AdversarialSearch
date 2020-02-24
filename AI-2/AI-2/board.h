@@ -8,6 +8,6 @@ public:
 	const static int cols = 7;
 	square pieces[cols][rows];
 	board();
-	bool addPiece(int column);
+	bool addPiece(int column, string color);
 
 };
