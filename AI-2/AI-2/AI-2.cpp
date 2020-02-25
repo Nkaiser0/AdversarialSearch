@@ -25,7 +25,8 @@ int main(int argc, char** argv)
 		ofName = argv[2];
 		nextP = argv[3];
 		depth = stoi(argv[4]);
-		gameBoard = board(ifName);
+		gameBoard = board();
+		state startingState = gameBoard.readfile(ifName);
 
 		if (nextP == "human-next" || nextP == "computer-next")
 
