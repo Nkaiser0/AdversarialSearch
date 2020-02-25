@@ -12,14 +12,15 @@ int main(int argc, char** argv)
 	board gameBoard;
 	string gameType, ifName, ofName, nextP;
 	int depth;
-	
-	if (argc != 5) // Impropper number of arguments
+	if (argc != 5) { // Impropper number of arguments
 		printf("Four command-line arguments are needed:\n");
 		printf("Usage: %s interactive [input_file] [computer-next/human-next] [depth]\n", argv[0]);
 		printf("or:  %s one-move [input_file] [output_file] [depth]\n", argv[0]);
 		return 0;
+	}
 	// diverge for game type
 	gameType = argv[1];
+	cout << gameType << endl;
 	if (gameType == "interactive") { // interactive
 		ifName = argv[2];
 		ofName = argv[2];
