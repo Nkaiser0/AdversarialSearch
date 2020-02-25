@@ -6,7 +6,6 @@ class board {
 
 public:
 	board();
-	board(string);
 
 	const static int rows = 6;
 	const static int cols = 7;
@@ -14,7 +13,7 @@ public:
 
 	bool addPiece(int column, state color);
 	void printBoard();
-	bool readfile(string);
+	state readfile(string fileName);
 	bool writefile(string);
 	int getScore(state);
 	bool canMove(int col);
