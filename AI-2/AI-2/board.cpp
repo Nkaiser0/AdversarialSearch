@@ -1,20 +1,13 @@
 #include "board.h"
 #include <iostream>
+#include <fstream>
 
 board::board()
 {
 }
 
-board::board(string s)
-{
-	readfile(s);
-}
-
 bool board::addPiece(int column, state color)
 {
-	//column is indexed at one for user convenience, so minus one for use in array
-	column--;
-
 	if (column >= cols) {
 		return false;
 	}
@@ -54,9 +47,50 @@ void board::printBoard()
 	cout << "Score: \033[31m" << getScore(RED) << "\033[0m - \033[32m" << getScore(GREEN) << "\033[0m\n";
 }
 
-bool board::readfile(string)
+state board::readfile(string fileName)
 {
-	return false;
+	ifstream file;
+	file.open(fileName);
+	vector<string> lines;
+	string nextLine;
+	bool valid = true;
+	int lineNum = 0;
+	while (valid && getline(file, nextLine)) {
+		lineNum++;
+		if (line.size() != 7 || (line.size() != 1 && lineNum != 7)) {
+			valid = false;
+		}
+		for (int i = 0; i < line.size(); i++) {
+			if (line[i] != 1 || line[i] != 2 || (line[i] != 0 && lineNum != 7)) {
+				valid = false;
+			}
+		}
+		lines.push_back(line);
+	}
+	if (line.size() != 7 || !valid) {
+		board = board();
+		return RED;
+	}
+	else {
+		for (int i = lines.size() - 2; i >= 0; i--) {
+			for (int j = 0; j < lines[i].size(); j++) {
+				int current = stoi(lines[i][j]);
+				if (current == 1) {
+					addPiece(j, RED);
+				}
+				else if (current == 2) {
+					addPiece(j, GREEN);
+				}
+			}
+		}
+		if (lines[6] == 1) {
+			return RED;
+		}
+		else if (lines[6] == 2) {
+			return GREEN;
+		}
+	}
+	return EMPTY;
 }
 
 bool board::writefile(string)
