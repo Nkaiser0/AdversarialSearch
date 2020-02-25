@@ -4,30 +4,50 @@
 #include <iostream>
 #include "board.h"
 
+int playerTurn();
 
-int main()
+int main(int argc, char** argv)
 {
-	board gameBoard = board();
+	// Create gameboard and make strings/needed ints
+	board gameBoard;
+	string gameType, ifName, ofName, nextP;
+	int depth;
+	
+	if (argc != 5) // Impropper number of arguments
+		printf("Four command-line arguments are needed:\n");
+		printf("Usage: %s interactive [input_file] [computer-next/human-next] [depth]\n", argv[0]);
+		printf("or:  %s one-move [input_file] [output_file] [depth]\n", argv[0]);
+		return 0;
+	// diverge for game type
+	gameType = argv[1];
+	if (gameType == "interactive") { // interactive
+		ifName = argv[2];
+		ofName = argv[2];
+		nextP = argv[3];
+		depth = stoi(argv[4]);
+		gameBoard = board(ifName);
 
-	gameBoard.addPiece(1, RED);
-	gameBoard.printBoard();
-	gameBoard.addPiece(2, GREEN);
-	gameBoard.printBoard();
-	gameBoard.addPiece(2, RED);
-	gameBoard.printBoard();
-	gameBoard.addPiece(3, GREEN);
-	gameBoard.printBoard();
-	gameBoard.addPiece(3, RED);
-	gameBoard.printBoard();
-	gameBoard.addPiece(3, GREEN);
-	gameBoard.printBoard();
-	gameBoard.addPiece(4, RED);
-	gameBoard.printBoard();
-	gameBoard.addPiece(4, GREEN);
-	gameBoard.printBoard();
-	gameBoard.addPiece(4, RED);
-	gameBoard.printBoard();
-	gameBoard.addPiece(4, GREEN);
-	gameBoard.printBoard();
+		if (nextP == "human-next" || nextP == "computer-next")
 
+		// Time to play the game
+		while (!gameBoard.gameOver()) { // While it isn't over
+			if (nextP == "human-next") {
+
+			}
+
+		}
+	}
+	else if (gameType == "one-move") { // one-move
+		// TODO
+		cout << "Not yet implementned\n";
+		return -1;
+	}
+	else { // Not a valid game type
+		return -2;
+	}
+
+}
+
+int playerTurn() {
+	return 0;
 }

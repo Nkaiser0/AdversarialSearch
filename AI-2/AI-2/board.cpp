@@ -32,6 +32,15 @@ bool board::canMove(int col) {
 	return pieces[col][rows - 1] == EMPTY;
 }
 
+bool board::gameOver()
+{
+	for (int i = 0; i < cols; i++) {
+		if (canMove(i))
+			return false;
+	}
+	return true;
+}
+
 
 void board::printBoard()
 {
@@ -52,6 +61,7 @@ void board::printBoard()
 	}
 
 	cout << "Score: \033[31m" << getScore(RED) << "\033[0m - \033[32m" << getScore(GREEN) << "\033[0m\n";
+	cout << "Moves so far: " << getMoveCount() << "\n\n";
 }
 
 bool board::readfile(string)
@@ -75,6 +85,20 @@ int board::getScore(state color) {
 		}
 	}
 	return score;
+}
+
+int board::getMoveCount()
+{
+	int count = 0;
+	for (int i = 0; i < cols; i++) {
+		for (int j = 0; j < rows; j++) {
+			if (pieces[i][j].color != EMPTY) // If not empty add to count
+				count++;
+			else // If empty then column is done
+				break;
+		}
+	}
+	return count;
 }
 
 state board::getLastMove()
