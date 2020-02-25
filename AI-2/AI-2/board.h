@@ -16,7 +16,9 @@ public:
 	state readfile(string fileName);
 	bool writefile(string);
 	int getScore(state);
+	int getMoveCount();
 	bool canMove(int col);
+	bool gameOver();
 
 private:
 	state getLastMove();
