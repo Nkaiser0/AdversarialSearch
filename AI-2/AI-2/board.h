@@ -7,6 +7,7 @@ class board {
 public:
 	board();
 	board(string);
+	board(board*);
 
 	const static int rows = 6;
 	const static int cols = 7;

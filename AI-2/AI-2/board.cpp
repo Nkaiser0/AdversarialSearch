@@ -10,6 +10,14 @@ board::board(string s)
 	readfile(s);
 }
 
+board::board(board* b) {
+	for (int i = 0; i < cols; i++) {
+		for (int j = 0; j < rows; j++) {
+			pieces[i][j] = b->pieces[i][j];
+		}
+	}
+}
+
 bool board::addPiece(int column, state color)
 {
 	//column is indexed at one for user convenience, so minus one for use in array
@@ -29,7 +37,7 @@ bool board::addPiece(int column, state color)
 }
 
 bool board::canMove(int col) {
-	return pieces[col][rows - 1] == EMPTY;
+	return (col < cols && pieces[col][rows - 1] == EMPTY);
 }
 
 
