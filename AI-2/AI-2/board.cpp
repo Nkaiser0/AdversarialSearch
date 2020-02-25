@@ -1,6 +1,8 @@
 #include "board.h"
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <string>
 
 board::board()
 {
@@ -62,10 +64,10 @@ state board::readfile(string fileName)
 	ifstream file;
 	file.open(fileName);
 	vector<string> lines;
-	string nextLine;
+	string line;
 	bool valid = true;
 	int lineNum = 0;
-	while (valid && getline(file, nextLine)) {
+	while (valid && getline(file, line)) {
 		lineNum++;
 		if (line.size() != 7 || (line.size() != 1 && lineNum != 7)) {
 			valid = false;
@@ -78,13 +80,13 @@ state board::readfile(string fileName)
 		lines.push_back(line);
 	}
 	if (line.size() != 7 || !valid) {
-		board = board();
 		return RED;
 	}
 	else {
 		for (int i = lines.size() - 2; i >= 0; i--) {
 			for (int j = 0; j < lines[i].size(); j++) {
-				int current = stoi(lines[i][j]);
+				string temp = "" + lines[i][j];
+				int current = stoi(temp);
 				if (current == 1) {
 					addPiece(j, RED);
 				}
@@ -93,10 +95,10 @@ state board::readfile(string fileName)
 				}
 			}
 		}
-		if (lines[6] == 1) {
+		if (stoi(lines[6]) == 1) {
 			return RED;
 		}
-		else if (lines[6] == 2) {
+		else if (stoi(lines[6]) == 2) {
 			return GREEN;
 		}
 	}
