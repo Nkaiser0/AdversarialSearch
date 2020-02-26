@@ -26,22 +26,3 @@ void square::print()
 		cout << " ";
 	}
 }
-
-square square::operator=(square s_)
-{
-	return s_;
-}
-
-bool square::operator==(square other)
-{
-	if (other.color == color)
-		return true;
-	return false;
-}
-
-bool square::operator!=(square other)
-{
-	if (other.color != color)
-		return true;
-	return false;
-}

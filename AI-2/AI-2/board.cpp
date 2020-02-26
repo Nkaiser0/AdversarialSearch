@@ -24,7 +24,7 @@ bool board::addPiece(int column, state color)
 }
 
 bool board::canMove(int col) {
-	return pieces[col][rows - 1] == EMPTY;
+	return pieces[col][rows - 1].color == EMPTY;
 }
 
 bool board::gameOver()
