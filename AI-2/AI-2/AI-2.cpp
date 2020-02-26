@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <stdexcept>
 #include "board.h"
 #include "computer.h"
 #include "node.h"
