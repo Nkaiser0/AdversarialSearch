@@ -106,8 +106,11 @@ state board::readfile(string fileName)
 	return EMPTY;
 }
 
-bool board::writefile(string)
+bool board::writefile(string s, state next)
 {
+	ofstream write;
+	write.open(s);
+	
 	return false;
 }
 

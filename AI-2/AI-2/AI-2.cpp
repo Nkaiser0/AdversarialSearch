@@ -11,8 +11,9 @@ state swapState(state);
 int main(int argc, char** argv)
 {
 	// Create gameboard and make strings/needed ints
-	board gameBoard;
+	board gameBoard = board();
 	computer comp;
+	state currentState;
 	string gameType, ifName, ofName, nextP;
 	int depth;
 	if (argc != 5) { // Impropper number of arguments
@@ -23,13 +24,14 @@ int main(int argc, char** argv)
 	}
 	// diverge for game type
 	gameType = argv[1];
+	ifName = argv[2];
+//	cout << "'" << ifName << "'\n";
+	currentState = gameBoard.readfile(ifName);
 	if (gameType == "interactive") { // interactive
-		ifName = argv[2];
 		ofName = argv[2];
 		nextP = argv[3];
 		depth = stoi(argv[4]);
-		gameBoard = board();
-		state currentState = gameBoard.readfile(ifName);
+		
 
 		if (nextP != "human-next" && nextP != "computer-next") { // If we don't have a valid next player
 			cout << "Choose what type of player goes next \"human-next\" or \"computer-next\".\n\n";
@@ -52,12 +54,12 @@ int main(int argc, char** argv)
 				nextP = "human-next"; // Set next player to human
 				currentState = swapState(currentState);
 			}
-
 		}
+		gameBoard.writefile(ofName, currentState);
 	}
 	else if (gameType == "one-move") { // one-move
 		// TODO
-		cout << "Not yet implementned\n";
+		cout << "Not yet Implemened\n";
 		return -1;
 	}
 	else { // Not a valid game type

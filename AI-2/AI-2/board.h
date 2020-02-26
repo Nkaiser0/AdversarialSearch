@@ -14,7 +14,7 @@ public:
 	bool addPiece(int column, state color);
 	void printBoard();
 	state readfile(string fileName);
-	bool writefile(string);
+	bool writefile(string, state);
 	int getScore(state);
 	int getMoveCount();
 	bool canMove(int col);
