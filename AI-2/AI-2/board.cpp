@@ -54,8 +54,9 @@ void board::printBoard()
 		}
 		cout << "|\n";
 	}
-
-	cout << "Score: \033[31m" << getScore(RED) << "\033[0m - \033[32m" << getScore(GREEN) << "\033[0m\n";
+	for (int i = 0; i < cols; i++)
+		cout << "|" << i + 1;
+	cout << "|\nScore: \033[31m" << getScore(RED) << "\033[0m - \033[32m" << getScore(GREEN) << "\033[0m\n";
 	cout << "Moves so far: " << getMoveCount() << "\n\n";
 }
 
