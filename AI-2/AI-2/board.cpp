@@ -68,14 +68,15 @@ state board::readfile(string fileName)
 	string line;
 	bool valid = true;
 	int lineNum = 0;
-	while (valid && getline(file, line)) {
+	while (getline(file, line)) {
 		lineNum++;
 		if (line.size() != 7 || (line.size() != 1 && lineNum != 7)) {
-			valid = false;
+			return RED;
 		}
 		for (int i = 0; i < line.size(); i++) {
-			if (line[i] != 1 || line[i] != 2 || (line[i] != 0 && lineNum != 7)) {
-				valid = false;
+			string s = "" + line[i];
+			if (stoi(s) != 1 || stoi(s) != 2 || (stoi(s) != 0 && lineNum != 7)) {
+				return RED;
 			}
 		}
 		lines.push_back(line);
