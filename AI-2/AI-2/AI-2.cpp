@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "board.h"
+#include "computer.h"
 
 int getMove();
 state swapState(state);
@@ -11,6 +12,7 @@ int main(int argc, char** argv)
 {
 	// Create gameboard and make strings/needed ints
 	board gameBoard;
+	computer comp;
 	string gameType, ifName, ofName, nextP;
 	int depth;
 	if (argc != 5) { // Impropper number of arguments
@@ -45,7 +47,7 @@ int main(int argc, char** argv)
 			}
 			else { // If it is the computer turn
 
-				// TODO get computer move
+				while (!gameBoard.addPiece(comp.nextMove(), currentState));// TODO get computer move
 
 				nextP = "human-next"; // Set next player to human
 				currentState = swapState(currentState);
