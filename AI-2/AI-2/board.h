@@ -19,7 +19,7 @@ public:
 	int getMoveCount();
 	bool canMove(int col);
 	bool gameOver();
-
+	board& operator=(board&);
 private:
 	state getLastMove();
 	bool hasVerticalScore(int col, int row, state color);
