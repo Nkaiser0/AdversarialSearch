@@ -70,7 +70,7 @@ state board::readfile(string fileName)
 	int lineNum = 0;
 	while (getline(file, line)) {
 		lineNum++;
-		if (line.size() != 7 || (line.size() != 1 && lineNum != 7)) {
+		if (line.size() != 7 || (line.size() != 1 && lineNum == 7)) {
 			return RED;
 		}
 		for (int i = 0; i < line.size(); i++) {
@@ -84,25 +84,23 @@ state board::readfile(string fileName)
 	if (line.size() != 7 || !valid) {
 		return RED;
 	}
-	else {
-		for (int i = lines.size() - 2; i >= 0; i--) {
-			for (int j = 0; j < lines[i].size(); j++) {
-				string temp = "" + lines[i][j];
-				int current = stoi(temp);
-				if (current == 1) {
-					addPiece(j, RED);
-				}
-				else if (current == 2) {
-					addPiece(j, GREEN);
-				}
+	for (int i = lines.size() - 2; i >= 0; i--) {
+		for (int j = 0; j < lines[i].size(); j++) {
+			string temp = "" + lines[i][j];
+			int current = stoi(temp);
+			if (current == 1) {
+				addPiece(j, RED);
+			}
+			else if (current == 2) {
+				addPiece(j, GREEN);
 			}
 		}
-		if (stoi(lines[6]) == 1) {
-			return RED;
-		}
-		else if (stoi(lines[6]) == 2) {
-			return GREEN;
-		}
+	}
+	if (stoi(lines[6]) == 1) {
+		return RED;
+	}
+	else if (stoi(lines[6]) == 2) {
+		return GREEN;
 	}
 	return EMPTY;
 }
