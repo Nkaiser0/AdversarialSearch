@@ -74,8 +74,9 @@ state board::readfile(string fileName)
 			return RED;
 		}
 		for (int i = 0; i < line.size(); i++) {
-			string s = "" + line[i];
-			if (stoi(s) != 1 || stoi(s) != 2 || (stoi(s) != 0 && lineNum != 7)) {
+			string s = "";
+			s += line[i];
+			if (stoi(s) != 1 || stoi(s) != 2 || (stoi(s) != 0 && lineNum == 7)) {
 				return RED;
 			}
 		}
