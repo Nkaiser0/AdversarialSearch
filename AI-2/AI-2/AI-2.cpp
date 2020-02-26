@@ -4,12 +4,26 @@
 #include <iostream>
 #include "board.h"
 #include "computer.h"
+#include "node.h"
 
 int getMove();
 state swapState(state);
 
 int main(int argc, char** argv)
 {
+	board gameBoard = board();
+	gameBoard.addPiece(0, GREEN);
+	gameBoard.addPiece(0, GREEN);
+	gameBoard.addPiece(0, GREEN);
+	gameBoard.addPiece(2, RED);
+	gameBoard.addPiece(4, RED);
+	gameBoard.addPiece(5, RED);
+	gameBoard.addPiece(6, RED);
+	gameBoard.printBoard();
+	
+	node base = node(gameBoard);
+	cout << base.MiniMax(GREEN, 1,5) << endl;
+	/*
 	// Create gameboard and make strings/needed ints
 	board gameBoard = board();
 	computer comp;
@@ -65,7 +79,7 @@ int main(int argc, char** argv)
 	else { // Not a valid game type
 		cout << "Not a valid game type, Please enter \"interactive\"  or \"one-move\"\n\n";
 		return -2;
-	}
+	}*/
 
 }
 

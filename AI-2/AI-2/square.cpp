@@ -27,10 +27,13 @@ void square::print()
 	}
 }
 
-square square::operator=(square s_)
+square& square::operator=(square& s)
 {
-	return s_;
+	square temp = square(s.color);
+	return temp;
 }
+
+
 
 bool square::operator==(square other)
 {

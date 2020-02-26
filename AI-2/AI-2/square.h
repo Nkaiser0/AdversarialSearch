@@ -10,7 +10,7 @@ public:
 	square();
 	square(state);
 	void print();
-	square operator = (square);
+	square& operator=(square&);
 	bool operator == (square);
 	bool operator != (square);
 };

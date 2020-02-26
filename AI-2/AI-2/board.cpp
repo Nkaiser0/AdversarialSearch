@@ -36,6 +36,19 @@ bool board::gameOver()
 	return true;
 }
 
+board& board::operator=(board& b)
+{
+	board temp = board();
+
+	for (int i=0; i<cols; i++) {
+		for (int j = 0; j < rows; j++) {
+			temp.pieces[i][j] = b.pieces[i][j];
+		}
+	}
+
+	return temp;
+}
+
 
 void board::printBoard()
 {
