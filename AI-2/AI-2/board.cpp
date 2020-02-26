@@ -110,8 +110,14 @@ bool board::writefile(string s, state next)
 {
 	ofstream write;
 	write.open(s);
-	
-	return false;
+	for (int j = rows-1; j >= 0; j--) {
+		for (int i = 0; i < cols; i++) {
+			write << pieces[i][j].color;
+		}
+		write << "\n";
+	}
+	write << next << endl;
+	return true;
 }
 
 int board::getScore(state color) {
