@@ -55,7 +55,7 @@ int main(int argc, char** argv)
 				currentState = swapState(currentState);
 			}
 		}
-		gameBoard.writefile(ofName, currentState);
+		// gameBoard.writefile(ofName, currentState);
 	}
 	else if (gameType == "one-move") { // one-move
 		// TODO
