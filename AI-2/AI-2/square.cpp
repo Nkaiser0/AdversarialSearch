@@ -26,6 +26,7 @@ void square::print()
 		cout << " ";
 	}
 }
+<<<<<<< HEAD
 
 square& square::operator=(square& s)
 {
@@ -48,3 +49,5 @@ bool square::operator!=(square other)
 		return true;
 	return false;
 }
+=======
+>>>>>>> 0f7dfbc395701f76bf5f36bb78092f7c3bf8870b

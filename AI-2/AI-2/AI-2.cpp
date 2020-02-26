@@ -39,13 +39,11 @@ int main(int argc, char** argv)
 	// diverge for game type
 	gameType = argv[1];
 	ifName = argv[2];
+	depth = stoi(argv[4]);
 //	cout << "'" << ifName << "'\n";
 	currentState = gameBoard.readfile(ifName);
 	if (gameType == "interactive") { // interactive
-		ofName = argv[2];
 		nextP = argv[3];
-		depth = stoi(argv[4]);
-		
 
 		if (nextP != "human-next" && nextP != "computer-next") { // If we don't have a valid next player
 			cout << "Choose what type of player goes next \"human-next\" or \"computer-next\".\n\n";
@@ -63,24 +61,31 @@ int main(int argc, char** argv)
 			}
 			else { // If it is the computer turn
 
-				while (!gameBoard.addPiece(comp.nextMove(), currentState));// TODO get computer move
+				while (!gameBoard.addPiece(comp.nextMove(), currentState));// get computer move
 
 				nextP = "human-next"; // Set next player to human
 				currentState = swapState(currentState);
 			}
 		}
-		gameBoard.writefile(ofName, currentState);
 	}
 	else if (gameType == "one-move") { // one-move
-		// TODO
-		cout << "Not yet Implemened\n";
-		return -1;
+		ofName = argv[3];
+		gameBoard.printBoard();
+		if (gameBoard.gameOver()) {
+			cout << "The game is already over.\n\n";
+			return 0;
+		}
+		while (!gameBoard.addPiece(comp.nextMove(), currentState));// get computer move
+		currentState = swapState(currentState);
+		gameBoard.printBoard();
+		gameBoard.writefile(ofName, currentState);
 	}
 	else { // Not a valid game type
 		cout << "Not a valid game type, Please enter \"interactive\"  or \"one-move\"\n\n";
 		return -2;
 	}*/
 
+	return 0;
 }
 
 int getMove() {

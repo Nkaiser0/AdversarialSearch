@@ -24,7 +24,7 @@ bool board::addPiece(int column, state color)
 }
 
 bool board::canMove(int col) {
-	return pieces[col][rows - 1] == EMPTY;
+	return pieces[col][rows - 1].color == EMPTY;
 }
 
 bool board::gameOver()
@@ -79,42 +79,45 @@ state board::readfile(string fileName)
 	file.open(fileName);
 	vector<string> lines;
 	string line;
-	bool valid = true;
 	int lineNum = 0;
-	while (valid && getline(file, line)) {
+	while (getline(file, line)) {
 		lineNum++;
-		if (line.size() != 7 || (line.size() != 1 && lineNum != 7)) {
-			valid = false;
+		if (line.size() != 7 && (line.size() != 1 && lineNum == 7)) {
+			return RED;
 		}
 		for (int i = 0; i < line.size(); i++) {
-			if (line[i] != 1 || line[i] != 2 || (line[i] != 0 && lineNum != 7)) {
-				valid = false;
+			string s = "";
+			s += line[i];
+			if (stoi(s) != 1 && stoi(s) != 2 && stoi(s) != 0) {
+				return RED;
+			}
+			if (stoi(s) != 1 && stoi(s) != 2 && lineNum == 7) {
+				return RED;
 			}
 		}
 		lines.push_back(line);
 	}
-	if (line.size() != 7 || !valid) {
+	if (lines.size() != 7) {
 		return RED;
 	}
-	else {
-		for (int i = lines.size() - 2; i >= 0; i--) {
-			for (int j = 0; j < lines[i].size(); j++) {
-				string temp = "" + lines[i][j];
-				int current = stoi(temp);
-				if (current == 1) {
-					addPiece(j, RED);
-				}
-				else if (current == 2) {
-					addPiece(j, GREEN);
-				}
+	for (int i = lines.size() - 2; i >= 0; i--) {
+		for (int j = 0; j < lines[i].size(); j++) {
+			string temp = "";
+			temp += lines[i][j];
+			int current = stoi(temp);
+			if (current == 1) {
+				addPiece(j, RED);
+			}
+			else if (current == 2) {
+				addPiece(j, GREEN);
 			}
 		}
-		if (stoi(lines[6]) == 1) {
-			return RED;
-		}
-		else if (stoi(lines[6]) == 2) {
-			return GREEN;
-		}
+	}
+	if (stoi(lines[6]) == 1) {
+		return RED;
+	}
+	else if (stoi(lines[6]) == 2) {
+		return GREEN;
 	}
 	return EMPTY;
 }
@@ -123,8 +126,14 @@ bool board::writefile(string s, state next)
 {
 	ofstream write;
 	write.open(s);
-	
-	return false;
+	for (int j = rows-1; j >= 0; j--) {
+		for (int i = 0; i < cols; i++) {
+			write << pieces[i][j].color;
+		}
+		write << "\n";
+	}
+	write << next << endl;
+	return true;
 }
 
 int board::getScore(state color) {
