@@ -25,4 +25,8 @@ void square::print()
 	default:
 		cout << " ";
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b6a7e9fe4dec797452419adb54c4a6b9123ddf2c

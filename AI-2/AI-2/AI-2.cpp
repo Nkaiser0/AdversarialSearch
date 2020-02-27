@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <stdexcept>
 #include "board.h"
 #include "computer.h"
 #include "node.h"
@@ -86,8 +87,15 @@ int main(int argc, char** argv)
 int getMove() {
 	cout << "Enter the column you would like to place your piece in: ";
 	string str;
+	int i;
 	getline(cin, str);
-	return stoi(str) - 1;
+	try {
+		i = stoi(str);
+	}
+	catch (invalid_argument e) {
+		return -1;
+	}
+	return i - 1;
 }
 
 state swapState(state s) {
