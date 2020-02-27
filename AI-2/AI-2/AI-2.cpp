@@ -49,16 +49,15 @@ int main(int argc, char** argv)
 		while (!gameBoard.gameOver()) { // While it isn't over
 			gameBoard.printBoard();
 			if (nextP == "human-next") { // If it is the player turn
-				//
-				while (!gameBoard.addPiece(getMove(), currentState)); // get and do a valid move
-
+//				while (!gameBoard.addPiece(getMove(), currentState)); // get and do a valid move
+				while (!gameBoard.addPiece(comp.nextMove(), currentState)); // get and do a valid move
 				nextP = "computer-next"; // set next player to the computer
 				currentState = swapState(currentState);
 			}
 			else { // If it is the computer turn
-
+				gameBoard.printBoard();
 				node base = node(gameBoard);
-				int nextCol = base.ABPrune(currentState, 1, depth);
+				int nextCol = base.ABPrune(currentState, depth);
 				if (nextCol == -1) {
 					nextCol = gameBoard.getNextOpenCol();
 				}
@@ -68,6 +67,7 @@ int main(int argc, char** argv)
 				currentState = swapState(currentState);
 			}
 		}
+		gameBoard.printBoard();
 	}
 	else if (gameType == "one-move") { // one-move
 		ofName = argv[3];
@@ -77,7 +77,7 @@ int main(int argc, char** argv)
 			return 0;
 		}
 		node base = node(gameBoard);
-		int nextCol = base.ABPrune(currentState, 1, depth);
+		int nextCol = base.ABPrune(currentState, depth);
 		if (nextCol == -1) {
 			nextCol = gameBoard.getNextOpenCol();
 		}
@@ -115,5 +115,4 @@ state swapState(state s) {
 		return RED;
 	cout << "Invalid turn identity\n";
 	return EMPTY;
-
 }
