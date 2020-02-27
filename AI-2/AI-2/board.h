@@ -19,6 +19,7 @@ public:
 	int getMoveCount();
 	bool canMove(int col);
 	bool gameOver();
+	int getNextOpenCol();
 	board& operator=(board&);
 private:
 	state getLastMove();

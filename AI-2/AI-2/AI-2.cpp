@@ -12,6 +12,7 @@ state swapState(state);
 
 int main(int argc, char** argv)
 {
+	//TODO FIX THE BULLSHIT wehre the compter refuses to play in col 7 when nothing is in there yet
 	/*board gameBoard = board();
 	gameBoard.addPiece(0, RED);
 	gameBoard.addPiece(1, RED);
@@ -57,7 +58,11 @@ int main(int argc, char** argv)
 			else { // If it is the computer turn
 
 				node base = node(gameBoard);
-				gameBoard.addPiece(base.ABPrune(currentState, 1, depth), currentState);// get computer move
+				int nextCol = base.ABPrune(currentState, 1, depth);
+				if (nextCol == -1) {
+					nextCol = gameBoard.getNextOpenCol();
+				}
+				gameBoard.addPiece(nextCol, currentState);// get computer move
 
 				nextP = "human-next"; // Set next player to human
 				currentState = swapState(currentState);
@@ -71,7 +76,12 @@ int main(int argc, char** argv)
 			cout << "The game is already over.\n\n";
 			return 0;
 		}
-		while (!gameBoard.addPiece(comp.nextMove(), currentState));// get computer move
+		node base = node(gameBoard);
+		int nextCol = base.ABPrune(currentState, 1, depth);
+		if (nextCol == -1) {
+			nextCol = gameBoard.getNextOpenCol();
+		}
+		gameBoard.addPiece(nextCol, currentState);// get computer move
 		currentState = swapState(currentState);
 		gameBoard.printBoard();
 		gameBoard.writefile(ofName, currentState);

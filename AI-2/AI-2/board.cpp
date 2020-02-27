@@ -23,6 +23,15 @@ bool board::addPiece(int column, state color)
 	return false;
 }
 
+int board::getNextOpenCol() {
+	for (int i = 0; i < cols; i++) {
+		if (canMove(i)) {
+			return i;
+		}
+	}
+	return -1;
+}
+
 bool board::canMove(int col) {
 	return pieces[col][rows - 1].color == EMPTY;
 }

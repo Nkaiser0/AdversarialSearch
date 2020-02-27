@@ -103,7 +103,7 @@ int node::prune(int alpha, int beta, state color, int depth, int maxDepth)
 		}
 	}
 	
-	int next = 0;
+	int next = -1;
 	for (int i = 0; i < board::cols; i++) {
 		if (children[i] != NULL) {
 			if (isMax) {
