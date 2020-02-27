@@ -1,5 +1,6 @@
 #include "node.h"
 #include <iostream>
+#include<algorithm>
 
 node::node(board& b)
 {
@@ -8,6 +9,16 @@ node::node(board& b)
 			gamestate.pieces[i][j].color = b.pieces[i][j].color;
 		}
 	}
+}
+node::~node() {
+	for (int i = 0; i < board::cols; i++) {
+		if (children[i] != NULL) {
+			children[i]->~node();
+			
+		}
+		free(children[i]);
+	}
+	
 }
 
 bool node::addChildWithMove(int col, state color)
@@ -22,6 +33,11 @@ bool node::addChildWithMove(int col, state color)
 	return false;
 }
 
+int node::ABPrune(state color, int depth, int maxDepth) {
+	MiniMax(color, depth, maxDepth);
+	return prune(-10000, 10000, color, depth, maxDepth);
+}
+
 //returns the column number that it should move in next
 int node::MiniMax(state color, int depth, int maxDepth)
 {
@@ -29,6 +45,9 @@ int node::MiniMax(state color, int depth, int maxDepth)
 	
 	score = gamestate.getScore(RED) - gamestate.getScore(GREEN);
 	if (depth > maxDepth) {
+		for (int i = 0; i < board::cols; i++) {
+			children[i] = NULL;
+		}
 		return -1;
 	}
 
@@ -42,7 +61,7 @@ int node::MiniMax(state color, int depth, int maxDepth)
 		
 	}
 
-	int goalScore = max ? -100 : 100;
+	/*int goalScore = max ? -100 : 100;
 	int next = -1;
 
 	for (int i = 0; i < board::cols; i++) {
@@ -66,6 +85,46 @@ int node::MiniMax(state color, int depth, int maxDepth)
 
 	score = goalScore;
 
-	return next;
+	return next;*/
+	return 0;
 
+}
+
+int node::prune(int alpha, int beta, state color, int depth, int maxDepth)
+{
+	bool isMax = color == RED;
+
+	if (depth < maxDepth) {
+		for (int i = 0; i < board::cols; i++) {
+			if (children[i] != NULL) {
+				children[i]->prune(alpha, beta, color == RED ? GREEN : RED, depth + 1, maxDepth);
+			}
+			
+		}
+	}
+	
+	int next = 0;
+	for (int i = 0; i < board::cols; i++) {
+		if (children[i] != NULL) {
+			if (isMax) {
+				if (alpha < children[i]->score) {
+					alpha = children[i]->score;
+					next = i;
+				}
+				
+			}
+			else {
+				if (beta > children[i]->score) {
+					beta = children[i]->score;
+					next = i;
+				}
+			}
+		}
+		if (alpha > beta) {
+			score = alpha;
+			return next;
+		}
+	}
+	score = isMax ? alpha : beta;
+	return next;
 }

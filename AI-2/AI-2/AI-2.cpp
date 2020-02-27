@@ -11,19 +11,13 @@ state swapState(state);
 
 int main(int argc, char** argv)
 {
-	board gameBoard = board();
-	gameBoard.addPiece(0, GREEN);
-	gameBoard.addPiece(0, GREEN);
-	gameBoard.addPiece(0, GREEN);
+	/*board gameBoard = board();
+	gameBoard.addPiece(0, RED);
+	gameBoard.addPiece(1, RED);
 	gameBoard.addPiece(2, RED);
-	gameBoard.addPiece(4, RED);
-	gameBoard.addPiece(5, RED);
-	gameBoard.addPiece(6, RED);
 	gameBoard.printBoard();
-	
 	node base = node(gameBoard);
-	cout << base.MiniMax(GREEN, 1,5) << endl;
-	/*
+	cout << base.ABPrune(RED, 1, 2) << endl;*/
 	// Create gameboard and make strings/needed ints
 	board gameBoard = board();
 	computer comp;
@@ -61,7 +55,8 @@ int main(int argc, char** argv)
 			}
 			else { // If it is the computer turn
 
-				while (!gameBoard.addPiece(comp.nextMove(), currentState));// get computer move
+				node base = node(gameBoard);
+				gameBoard.addPiece(base.ABPrune(currentState, 1, depth), currentState);// get computer move
 
 				nextP = "human-next"; // Set next player to human
 				currentState = swapState(currentState);
@@ -83,8 +78,8 @@ int main(int argc, char** argv)
 	else { // Not a valid game type
 		cout << "Not a valid game type, Please enter \"interactive\"  or \"one-move\"\n\n";
 		return -2;
-	}*/
-
+	}
+	
 	return 0;
 }
 
